@@ -1,0 +1,171 @@
+wandb_version: 1
+
+seed:
+  desc: null
+  value: 1
+exp_name:
+  desc: null
+  value: lora_test
+datasets:
+  desc: null
+  value:
+  - hh
+mode:
+  desc: null
+  value: train
+debug:
+  desc: null
+  value: false
+use_fsdp:
+  desc: null
+  value: true
+fsdp_port:
+  desc: null
+  value: 53383
+wandb:
+  desc: null
+  value:
+    enabled: true
+    entity: null
+    project: archangel
+cache_dir:
+  desc: null
+  value: ./cache
+local_run_dir:
+  desc: null
+  value: ./cache/lora_test
+do_first_eval:
+  desc: null
+  value: true
+minimum_log_interval_secs:
+  desc: null
+  value: 1.0
+intermediate_checkpoints:
+  desc: null
+  value: false
+trainer:
+  desc: null
+  value: BasicTrainer
+lr:
+  desc: null
+  value: 5.0e-07
+n_epochs:
+  desc: null
+  value: 1
+n_examples:
+  desc: null
+  value: null
+optimizer:
+  desc: null
+  value: RMSprop
+warmup_steps:
+  desc: null
+  value: 150
+eval_every:
+  desc: null
+  value: 20000
+n_samples:
+  desc: null
+  value: 128
+samples_dir:
+  desc: null
+  value: samples/
+n_eval_examples:
+  desc: null
+  value: 512
+saved_policy:
+  desc: null
+  value: ./cache/lora_test/LATEST/policy.pt
+top_p:
+  desc: null
+  value: 0.95
+human_prefix:
+  desc: null
+  value: '
+
+    <|user|>
+
+    '
+assistant_prefix:
+  desc: null
+  value: '
+
+    <|assistant|>
+
+    '
+human_suffix:
+  desc: null
+  value: ''
+assistant_suffix:
+  desc: null
+  value: ''
+frac_unique_desirable:
+  desc: null
+  value: 1.0
+frac_unique_undesirable:
+  desc: null
+  value: 1.0
+model:
+  desc: null
+  value:
+    name_or_path: EleutherAI/pythia-160m
+    tokenizer_name_or_path: null
+    load_from: null
+    block_name: GPTNeoXLayer
+    policy_dtype: bfloat16
+    fsdp_policy_mp: null
+    reference_dtype: bfloat16
+    max_grad_norm: 10.0
+    v_head_max_grad_norm: 0.1
+    max_length: 2048
+    max_prompt_length: 1024
+    activation_checkpointing: true
+    batch_size: 32
+    gradient_accumulation_steps: 1
+    eval_batch_size: 16
+    use_flash_attention: false
+loss:
+  desc: null
+  value:
+    name: sft
+    trainer: SFTTrainer
+    dataloader: SFTDataLoader
+    use_reference_model: false
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.5
+    cli_version: 0.16.2
+    framework: huggingface
+    huggingface_version: 4.38.0.dev0
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1707239044.607401
+    t:
+      1:
+      - 1
+      - 11
+      - 49
+      - 50
+      - 51
+      - 55
+      - 71
+      2:
+      - 1
+      - 11
+      - 49
+      - 50
+      - 51
+      - 55
+      - 71
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.11.5
+      5: 0.16.2
+      6: 4.38.0.dev0
+      8:
+      - 5
+      - 9
+      13: linux-x86_64

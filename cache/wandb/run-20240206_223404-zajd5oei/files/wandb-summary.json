@@ -1,0 +1,1 @@
+{"logps_eval/chosen": -245.560546875, "loss/eval": 245.560546875, "_timestamp": 1707239058.862765, "_runtime": 14.255364179611206, "_step": 320, "logps_train/chosen": -253.30833333333334, "loss/train": 253.30833333333334, "grad_norm": 1245.3333333333333, "examples_per_second": 90.5296217918703, "counters/examples": 320, "counters/updates": 10, "_wandb": {"runtime": 14}}

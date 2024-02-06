@@ -1,0 +1,395 @@
+{
+    "os": "Linux-6.5.0-14-generic-x86_64-with-glibc2.35",
+    "python": "3.11.5",
+    "heartbeatAt": "2024-02-06T17:04:05.557179",
+    "startedAt": "2024-02-06T17:04:04.601997",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "loss=sft",
+        "model=pythia160m",
+        "datasets=[hh]",
+        "exp_name=lora_test",
+        "mode=train",
+        "++cache_dir=./cache"
+    ],
+    "state": "running",
+    "program": "/home/loki/projects/synthetic_debates/HALOs/train.py",
+    "codePathLocal": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/rokosbasilisk/HALOs.git",
+        "commit": "98bf2e4910b7ad8a4b5b7b9d830b5c23629a18c2"
+    },
+    "email": "ram.bharadwaj.arya@gmail.com",
+    "root": "/home/loki/projects/synthetic_debates/HALOs",
+    "host": "asgard",
+    "username": "loki",
+    "executable": "/home/loki/anaconda3/bin/python",
+    "cpu_count": 32,
+    "cpu_count_logical": 64,
+    "cpu_freq": {
+        "current": 2.1330937499999987,
+        "min": 1800.0,
+        "max": 3600.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.928,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.745,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.777,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.7,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.808,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.796,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.824,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.074,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3.6,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.751,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.75,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 3600.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1832.2072448730469,
+            "used": 1700.2609901428223
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 6,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 251.52250289916992
+    }
+}

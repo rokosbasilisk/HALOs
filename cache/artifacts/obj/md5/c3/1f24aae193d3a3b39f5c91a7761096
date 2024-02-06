@@ -1,0 +1,249 @@
+{
+    "_version": "v0",
+    "source_type": "repo",
+    "source": {
+        "git": {
+            "remote": "https://github.com/rokosbasilisk/HALOs.git",
+            "commit": "98bf2e4910b7ad8a4b5b7b9d830b5c23629a18c2"
+        },
+        "entrypoint": [
+            "python",
+            "train.py"
+        ],
+        "notebook": false
+    },
+    "input_types": {
+        "wb_type": "typedDict",
+        "params": {
+            "type_map": {
+                "seed": {
+                    "wb_type": "number"
+                },
+                "exp_name": {
+                    "wb_type": "string"
+                },
+                "datasets": {
+                    "wb_type": "list",
+                    "params": {
+                        "element_type": {
+                            "wb_type": "string"
+                        },
+                        "length": 1
+                    }
+                },
+                "mode": {
+                    "wb_type": "string"
+                },
+                "debug": {
+                    "wb_type": "boolean"
+                },
+                "use_fsdp": {
+                    "wb_type": "boolean"
+                },
+                "fsdp_port": {
+                    "wb_type": "number"
+                },
+                "wandb": {
+                    "wb_type": "typedDict",
+                    "params": {
+                        "type_map": {
+                            "enabled": {
+                                "wb_type": "boolean"
+                            },
+                            "entity": {
+                                "wb_type": "none"
+                            },
+                            "project": {
+                                "wb_type": "string"
+                            }
+                        }
+                    }
+                },
+                "cache_dir": {
+                    "wb_type": "string"
+                },
+                "local_run_dir": {
+                    "wb_type": "string"
+                },
+                "do_first_eval": {
+                    "wb_type": "boolean"
+                },
+                "minimum_log_interval_secs": {
+                    "wb_type": "number"
+                },
+                "intermediate_checkpoints": {
+                    "wb_type": "boolean"
+                },
+                "trainer": {
+                    "wb_type": "string"
+                },
+                "lr": {
+                    "wb_type": "number"
+                },
+                "n_epochs": {
+                    "wb_type": "number"
+                },
+                "n_examples": {
+                    "wb_type": "none"
+                },
+                "optimizer": {
+                    "wb_type": "string"
+                },
+                "warmup_steps": {
+                    "wb_type": "number"
+                },
+                "eval_every": {
+                    "wb_type": "number"
+                },
+                "n_samples": {
+                    "wb_type": "number"
+                },
+                "samples_dir": {
+                    "wb_type": "string"
+                },
+                "n_eval_examples": {
+                    "wb_type": "number"
+                },
+                "saved_policy": {
+                    "wb_type": "string"
+                },
+                "top_p": {
+                    "wb_type": "number"
+                },
+                "human_prefix": {
+                    "wb_type": "string"
+                },
+                "assistant_prefix": {
+                    "wb_type": "string"
+                },
+                "human_suffix": {
+                    "wb_type": "string"
+                },
+                "assistant_suffix": {
+                    "wb_type": "string"
+                },
+                "frac_unique_desirable": {
+                    "wb_type": "number"
+                },
+                "frac_unique_undesirable": {
+                    "wb_type": "number"
+                },
+                "model": {
+                    "wb_type": "typedDict",
+                    "params": {
+                        "type_map": {
+                            "name_or_path": {
+                                "wb_type": "string"
+                            },
+                            "tokenizer_name_or_path": {
+                                "wb_type": "none"
+                            },
+                            "load_from": {
+                                "wb_type": "none"
+                            },
+                            "block_name": {
+                                "wb_type": "string"
+                            },
+                            "policy_dtype": {
+                                "wb_type": "string"
+                            },
+                            "fsdp_policy_mp": {
+                                "wb_type": "none"
+                            },
+                            "reference_dtype": {
+                                "wb_type": "string"
+                            },
+                            "max_grad_norm": {
+                                "wb_type": "number"
+                            },
+                            "v_head_max_grad_norm": {
+                                "wb_type": "number"
+                            },
+                            "max_length": {
+                                "wb_type": "number"
+                            },
+                            "max_prompt_length": {
+                                "wb_type": "number"
+                            },
+                            "activation_checkpointing": {
+                                "wb_type": "boolean"
+                            },
+                            "batch_size": {
+                                "wb_type": "number"
+                            },
+                            "gradient_accumulation_steps": {
+                                "wb_type": "number"
+                            },
+                            "eval_batch_size": {
+                                "wb_type": "number"
+                            },
+                            "use_flash_attention": {
+                                "wb_type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "loss": {
+                    "wb_type": "typedDict",
+                    "params": {
+                        "type_map": {
+                            "name": {
+                                "wb_type": "string"
+                            },
+                            "trainer": {
+                                "wb_type": "string"
+                            },
+                            "dataloader": {
+                                "wb_type": "string"
+                            },
+                            "use_reference_model": {
+                                "wb_type": "boolean"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "output_types": {
+        "wb_type": "typedDict",
+        "params": {
+            "type_map": {
+                "logps_eval/chosen": {
+                    "wb_type": "number"
+                },
+                "loss/eval": {
+                    "wb_type": "number"
+                },
+                "_timestamp": {
+                    "wb_type": "number"
+                },
+                "_runtime": {
+                    "wb_type": "number"
+                },
+                "_step": {
+                    "wb_type": "number"
+                },
+                "logps_train/chosen": {
+                    "wb_type": "number"
+                },
+                "loss/train": {
+                    "wb_type": "number"
+                },
+                "grad_norm": {
+                    "wb_type": "number"
+                },
+                "examples_per_second": {
+                    "wb_type": "number"
+                },
+                "counters/examples": {
+                    "wb_type": "number"
+                },
+                "counters/updates": {
+                    "wb_type": "number"
+                }
+            }
+        }
+    },
+    "runtime": "3.11.5"
+}

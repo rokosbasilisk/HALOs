@@ -98,46 +98,4 @@ What should we do?
 10. After setting `OPENAI_API_KEY`, we can evaluate our aligned model with GPT-4 with the following command, which compares the aligned model's generations to the human-chosen response in the data:
 
     `python compare.py -f samples/kto-simple_llama7b.json -mc 512 -bk chosen -ck policy -r result.jsonl `
-
-
-## FAQs
-
-1. Do you support multi-node training?
-
-   No, currently the repo only supports single-node training. Multi-node training will be added at some point in the future.
-   Every model in the Archangel suite was trained with 8 x A100 GPUs on a single node.
-
-2. How do I save intermediate checkpoints?
-
-   Set intermediate_checkpoints to true in config/config.yaml or on the command line with ++config.intermediate_checkpoints=true.
-   Every config.eval_every steps, a checkpoint will be saved in the experiment directory ($cache_dir/$exp_name).
-
-3. Where do I find all the Archangel models?
-
-    They are all on the Huggingface Hub:
-
-| Model | PPO | DPO | KTO | SFT | SLIC | SFT+PPO | SFT+DPO | SFT+KTO | CSFT | SFT+CSFT |
-| ------------- |:-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:| -------------:|-------------:|
-| pythia1-4b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_pythia1-4b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_pythia1-4b) |  
-| pythia2-8b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_pythia2-8b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_pythia2-8b) |  
-| pythia6-9b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_pythia6-9b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_pythia6-9b) |  
-| pythia12-0b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_pythia12-0b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_pythia12-0b) |  
-| llama7b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_llama7b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_llama7b) |  
-| llama13b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_llama13b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_llama13b) |  
-| llama30b | [weights](https://huggingface.co/ContextualAI/archangel_ppo_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_dpo_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_kto_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_sft_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_slic_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-ppo_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-dpo_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-kto_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_csft_llama30b) | [weights](https://huggingface.co/ContextualAI/archangel_sft-csft_llama30b) |  
-
-![halos](assets/thumbnail.jpg)
-
-   
-## Citation
-
-If you find this repo or the technical paper useful in your research, please feel free to cite [our work](https://contextual.ai/better-cheaper-faster-llm-alignment-with-kto/):
-```
-@techreport{ethayarajh2023halos,
-  author = {Ethayarajh, Kawin and Xu, Winnie, and Jurafsky, Dan and Kiela, Douwe},
-  title = {Human-Aware Loss Functions (HALOs)},
-  institution = {Contextual AI},
-  note = {https://github.com/ContextualAI/HALOs/blob/main/assets/report.pdf},
-  year = {2023},
-}
 ```

@@ -8,16 +8,13 @@ Main script for training.
 
 Sample use is:
 
-python train.py loss=ppo model=llama30b datasets=[shp,hh,oasst] exp_name=archangel_sft+ppo_llama30b mode=train \
-     ++cache_dir=/data/models/archangel ++model.load_from=archangel_sft_llama30b/LATEST/policy.pt
-
+python train.py loss=kto model=mistral7b datasets=[hh] exp_name=mistral7b_kto mode=train ++cache_dir="./data/models" ++model.lora_checkpoint="./mistral_checkpoint/"
 where
 - loss should have a file under config/loss that specifies the trainer in trainers.py and dataloader in dataloader.py
 - model should have a file under config/model
 - datasets is a list of datasets, each of which has a get_{name} function in dataloader.py
 - exp_name is the experiment name (on WANDB); model will be saved to the cache_dir/exp_name
-- model.load_from should be used for aligning a model that has already been finetuned
-
+- model.lora_checkpoint picks the model from lora checkpoint (wip)
 Remember to allocate enough RAM before running this (you need aroundd 800 GB for Llama-13B).
 """
 import torch
@@ -34,7 +31,6 @@ import json
 import socket
 from typing import Optional, Set
 import resource
-from models import AutoModelForCausalLMWithValueHead
 from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
 import torch.distributed as dist
 import numpy as np
@@ -42,7 +38,8 @@ import random
 import dataloader
 import gc
 from utils import delete_dict
-
+from peft import LoraConfig, get_peft_model
+from peft import PeftModel, prepare_model_for_kbit_training
 
 def worker_main(rank: int, world_size: int, config: DictConfig, tokenizer: AutoTokenizer, train_iterator: dataloader.DataLoader, eval_iterator: dataloader.DataLoader, policy: nn.Module, reference_model: Optional[nn.Module] = None):
     """Main function for each worker process (may be only 1 for BasicTrainer)."""
@@ -128,55 +125,43 @@ def main(config: DictConfig):
         reference_kwargs['device_map'] = 'balanced'
 
     print('building policy')
-    model_class = AutoModelForCausalLMWithValueHead if config.loss.name == 'ppo' else AutoModelForCausalLM
+    
+    model_class = AutoModelForCausalLM
     policy = model_class.from_pretrained(
-        config.model.name_or_path, low_cpu_mem_usage=True, use_flash_attention_2=config.model.use_flash_attention, **policy_kwargs)
+        config.model.name_or_path, 
+        low_cpu_mem_usage=True, 
+        **policy_kwargs)
+    
     disable_dropout(policy)
 
     if config.loss.use_reference_model:
         print('building reference model')
         reference_model = AutoModelForCausalLM.from_pretrained(
-            config.model.name_or_path, low_cpu_mem_usage=True, use_flash_attention_2=config.model.use_flash_attention, **reference_kwargs)
+            config.model.name_or_path, 
+            low_cpu_mem_usage=True, 
+            use_flash_attention_2=config.model.use_flash_attention, 
+            **reference_kwargs)
         disable_dropout(reference_model)
     else:
         reference_model = None
 
-    if config.model.load_from is not None:
-        state_dict = torch.load(os.path.join(config.cache_dir, config.model.load_from), map_location='cpu')
-        step, metrics = state_dict['step_idx'], state_dict['metrics']
-        print(f'loading pre-trained weights at step {step} from {config.model.load_from} with metrics {json.dumps(metrics, indent=2)}')
-
-        if config.loss.name == 'ppo':
-            policy.pretrained_model.load_state_dict(state_dict['state'])
-            if config.loss.use_reference_model:
-                reference_model.load_state_dict(state_dict['state'])
-        else:
-            policy.load_state_dict(state_dict['state'])
-            if config.loss.use_reference_model:
-                reference_model.load_state_dict(state_dict['state'])
-
-        delete_dict(state_dict)
-        gc.collect()
-        torch.cuda.empty_cache()
-
+    if config.model.lora_checkpoint:
+        policy = prepare_model_for_kbit_training(policy) 
+        policy = PeftModel.from_pretrained(policy, config.model.lora_checkpoint)
         print('loaded pre-trained weights')
-
     tokenizer_name_or_path = config.model.tokenizer_name_or_path or config.model.name_or_path
     print(f'Loading tokenizer {tokenizer_name_or_path}')
-    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path)
-    if tokenizer.pad_token_id is None:
-        tokenizer.pad_token_id = tokenizer.eos_token_id
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path,
+            padding_side="left",
+            add_eos_token=True,
+            add_bos_token=True)
+    tokenizer.pad_token = tokenizer.eos_token
 
     # add special tokens
     special_tokens = [ config.loss.chosen_control_token, config.loss.rejected_control_token ] if config.loss.name == 'csft' else []
     num_added = tokenizer.add_special_tokens({ "additional_special_tokens" : special_tokens })
-    if special_tokens != []:
-        if config.loss.name == 'ppo':
-            # for PPO, policy and reference must tokenize the same way
-            policy.pretrained_model.resize_token_embeddings(len(tokenizer))
-            reference_model.resize_token_embeddings(len(tokenizer))
-        else:
-            policy.resize_token_embeddings(len(tokenizer))
+    
+    if special_tokens != []: policy.resize_token_embeddings(len(tokenizer))
 
     print(f"{num_added} special tokens added")
 
