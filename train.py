@@ -139,7 +139,6 @@ def main(config: DictConfig):
         reference_model = AutoModelForCausalLM.from_pretrained(
             config.model.name_or_path, 
             low_cpu_mem_usage=True, 
-            use_flash_attention_2=config.model.use_flash_attention, 
             **reference_kwargs)
         disable_dropout(reference_model)
     else:
