@@ -384,6 +384,42 @@ def get_ultrabin(split: str, human_prefix: str, human_suffix: str, assistant_pre
 
     return data
 
+def get_debatedata(split: str, human_prefix: str, human_suffix: str, assistant_prefix: str, assistant_suffix: str) -> Dataset:
+    """
+
+    Args:
+        split: one of 'test', 'train'
+        human-prefix and suffix will be: |<ALICE>|
+        assistant-prefix and suffix will be: |<BOB>|
+
+    Returns:   
+        A Dataset instance.
+    """
+    if split == 'train':
+        split = 'train[:60]'
+    elif split == 'test':
+        split = 'train[60:]'
+    else:
+        raise ValueError()
+
+    rank0_print(f'Loading Debate Dataset')
+    dataset = datasets.load_dataset('json', data_files='../data/results/debate_results_processed.jsonl', split=split)
+
+    data = Dataset('debatedata')
+
+    for row in dataset:
+        
+        prompt = row['transcript'].split("|<START_DEBATE>|")[0]
+        responses = [row['transcript'].split("|<START_DEBATE>|")[1]]
+
+        data[prompt].prompt = prompt
+        data[prompt].generations.extend(responses)
+        data[prompt].desirable.append(int(row["result"]))
+        data[prompt].sft_index = 0
+        data[prompt].dataset_name = data.name
+        data[prompt].truncation_mode = 'keep_start'
+
+    return data
 
 class DataLoader:
     """
