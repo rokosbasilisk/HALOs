@@ -390,7 +390,7 @@ def get_debatedata(split: str, human_prefix: str, human_suffix: str, assistant_p
     Args:
         split: one of 'test', 'train'
         human-prefix and suffix will be: |<ALICE>|
-        assistant-prefix and suffix will be: |<BOB>|
+        assistant-prefix and suffix will be: |<BOB>| ? 
 
     Returns:   
         A Dataset instance.
